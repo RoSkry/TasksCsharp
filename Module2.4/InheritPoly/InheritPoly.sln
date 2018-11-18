@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuidTask1", "GuidTask1\Guid
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeTask2", "DateTimeTask2\DateTimeTask2.csproj", "{6B037537-3011-44E5-AD12-CA3EEE983BBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestedClassTupleTask3", "NestedClassTupleTask3\NestedClassTupleTask3.csproj", "{E692471E-F305-406A-B5D1-7389FF545D76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NestedClassTupleTask3", "NestedClassTupleTask3\NestedClassTupleTask3.csproj", "{E692471E-F305-406A-B5D1-7389FF545D76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTask4", "ShopTask4\ShopTask4.csproj", "{6D277035-17A7-4909-9A34-222A57641328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopTask4", "ShopTask4\ShopTask4.csproj", "{6D277035-17A7-4909-9A34-222A57641328}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

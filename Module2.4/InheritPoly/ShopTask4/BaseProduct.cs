@@ -7,13 +7,17 @@ namespace ShopTask4
     //Класс BaseProduct со свойства Id(типа int),  Name, ListPrice, UnitName(еденица измерения) RegularDiscountQty, PremiumDiscountQty.В сетере свойства нейм сделать проверку строка не была пустой(!string.IsNullOrEmpty), в сетере свойства прайс - чтоб цена была больше нуля.В сетере RegularDiscountQty - количество товара не должно быть меньше 10 (едениц товара). в сетере PremiumDiscountQty - количество товара не должно быть меньше чем значение RegularDiscountQty.ДОбавить метод GetSalesPrice.На вход qty - количество.В нем учесть: если qty больше RegularDiscountQty но меньше PremiumDiscountQty - возвращаем цену со скидкой 10%, если больше PremiumDiscountQty - цену со скидкой 15%. Перезаписать ToSting() с тем чтоб нам возвращалось описание продукта.Инкапсулировать вызов ToSting в методе GetDesciption();
     class BaseProduct
     {
-        public int Id { get; set; }
+        private string _name;
+        private decimal _listPrice;
+        private int _regularDiscountQty;
+        private int _premiumDiscountQty;
+        public int Id { get; set; }       
         public string Name {
             set
             {
                 if(!string.IsNullOrEmpty(value))
                 {
-                    Name = value;
+                    _name = value;
                 }
                 else
                 {
@@ -22,7 +26,7 @@ namespace ShopTask4
             }
             get
             {
-                return Name;
+                return _name;
             }
            
         }
@@ -32,7 +36,7 @@ namespace ShopTask4
             {
                 if(value>0)
                 {
-                    ListPrice = value;
+                    _listPrice = value;
                 }
                 else
                 {
@@ -41,7 +45,7 @@ namespace ShopTask4
             }
             get
             {
-                return ListPrice;
+                return _listPrice;
             }
         }
         public string UnitName { get; set; }
@@ -51,34 +55,34 @@ namespace ShopTask4
             {
                 if(value>=10)
                 {
-                    RegularDiscountQty = value;
+                    _regularDiscountQty = value;
                 }
                 else
                 {
-                    RegularDiscountQty = 0;
+                    _regularDiscountQty = 0;
                 }
             }
             get
             {
-                return RegularDiscountQty;
+                return _regularDiscountQty;
             }
         }
         public int PremiumDiscountQty
         {
             set
             {
-                if(value>= RegularDiscountQty)
+                if(value>= _regularDiscountQty)
                 {
-                    PremiumDiscountQty = value;
+                    _premiumDiscountQty = value;
                 }
                 else
                 {
-                    PremiumDiscountQty = 0;
+                    _premiumDiscountQty = 0;
                 }
             }
             get
             {
-                return PremiumDiscountQty;
+                return _premiumDiscountQty;
             }
            
         }
@@ -98,9 +102,9 @@ namespace ShopTask4
             Console.WriteLine(ToString()); 
         }
 
-        private new string ToString()
+        protected new virtual string ToString()
         {
-            return $"Id: {Id}/nName: {Name}/nListprice: {ListPrice}/nRegularDiscountQty/n: {RegularDiscountQty}/nPremiumDiscountQty: {PremiumDiscountQty}";
+            return $"Id: {Id}\nName: {Name}\nListprice: {ListPrice}\nRegularDiscountQty: {RegularDiscountQty}\nPremiumDiscountQty: {PremiumDiscountQty}\n";
         }
     }
 }
