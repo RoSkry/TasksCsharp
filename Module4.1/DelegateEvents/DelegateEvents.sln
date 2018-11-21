@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegateEvents", "DelegateEvents\DelegateEvents.csproj", "{E726AC2D-B4BB-43B8-A26D-4F0A546141A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegateTask1", "DelegateEvents\DelegateTask1.csproj", "{E726AC2D-B4BB-43B8-A26D-4F0A546141A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
