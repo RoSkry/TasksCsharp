@@ -20,11 +20,11 @@ namespace LinqQueries
             //3)Найти тех, кто живет в странах с  насилением больше 80 миллионов
             var inBigCities = people.Where(t => t.HomeAddress.City.Country.Population > 80000000).Select(p => $"{p.Name} {p.SurName} lives in {p.HomeAddress.City.Country.Name} with population {p.HomeAddress.City.Country.Population}");
             //4) Найти средний доход в группе персонажей(return decimal Average()) с высшим образованием(выше HECert - аналого нашего двухгодичного "младшего специалиста")
-            var a = people.Where(p => p.EducationLevel > EducationLevel.HECert).Select(p=>p.AnnualIncome).Average();
+            var a = people.Where(p => p.EducationLevel > EducationLevel.HECert).Average(p => p.AnnualIncome); //так короче ;)
             //5) Найти тех, чей годовой доход превышает годовой доход в их стране
             var b = people.Where(p => p.AnnualIncome > p.HomeAddress.City.Country.AvgIncome).Select(p => $"{p.Name} {p.SurName}, annual income  {p.AnnualIncome} avg in the country {p.HomeAddress.City.Country.AvgIncome}");
             //6) Найти максимальное число языков, которым владеет персонаж(return int Max()
-            var c = people.Select(p => p.Languages.Count()).Max();                 
+            var c = people.Max(p => p.Languages.Count());                 
             //7) Найти виртуозного полиглота(для которого число языков равняется числу из п.6)
             var naxLan = people.Where(p => p.Languages.Count() == c).Select(p => $"{p.Name} {p.SurName}");
             //8) Найти персонажа, который не владеет языком страны, в которой он проживает.Если такого нет - вернуть null
@@ -55,8 +55,14 @@ namespace LinqQueries
             var rt1 = people.Where(p => p.Languages.Any(r => r.Name == "English")&&p.HomeAddress.City.Country.Language.Name!= "English").Count();
 
             var procent1 = (double)rt1 / rt * 100;
+            /*
+                         double share = people.Where(p => p.Languages.Select(l => l.Id).Contains(Dataset.Langs.Single(l => l.Key == "en").Value.Id)).Where(p => p.HomeAddress.City.Country.Language.Id != Dataset.Langs.Single(l => l.Key == "en").Value.Id).Count() /
+                people.Where(p => p.Languages.Select(l => l.Id).Contains(Dataset.Langs.Single(l => l.Key == "en").Value.Id)).Where(p => p.HomeAddress.City.Country.Language.Id == Dataset.Langs.Single(l => l.Key == "en").Value.Id).Count();
+
+             */
+
             //18) Найти самого богатого персонажа
-            var richest = people.FirstOrDefault(p => p.AnnualIncome == people.Max(r => r.AnnualIncome));
+            var richest = people.First(p => p.AnnualIncome == people.Max(r => r.AnnualIncome)); //просто First пойдет - всегда кто-то будет
             //19) Найти персонажа с наименьшим доходом в Британии
            // var porestSalaryinBritain = people.Where(p => p.HomeAddress.City.Country.Name == "United Kingdon").Min(r=>r.AnnualIncome);
 
